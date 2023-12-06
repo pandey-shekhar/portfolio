@@ -281,9 +281,9 @@
                                 <span class="ico-circle"><i class="bi bi-check"></i></span>
                             </div>
                             <div class="counter-num">
-                                <p data-purecounter-start="0" data-purecounter-end="450" data-purecounter-duration="1"
+                                <p data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1"
                                     class="counter purecounter"></p>
-                                <span class="counter-text">WORKS COMPLETED</span>
+                                <span class="counter-text">PROJECTS COMPLETED</span>
                             </div>
                         </div>
                     </div>
@@ -293,17 +293,7 @@
                                 <span class="ico-circle"><i class="bi bi-journal-richtext"></i></span>
                             </div>
                             <div class="counter-num">
-                                <?php
-                            $startDate = new DateTime('2022-03-01');
-                            $endDate = new DateTime();
-                            $interval = $startDate->diff($endDate);
-                            $years = $interval->y;
-                            $months = $interval->m;
-                            $decimal = round($months / 12, 1);
-                            $total = $years + $decimal;
-                            ?>
-                                <p id="experience-counter" data-start="0" data-end="<?php echo $total; ?>"
-                                    data-decimal="1" class="counter"></p>
+                                <p id="experience-counter" data-decimal="1" class="counter"></p>
                                 <span class="counter-text">YEARS OF EXPERIENCE</span>
                             </div>
                         </div>
@@ -314,7 +304,7 @@
                                 <span class="ico-circle"><i class="bi bi-people"></i></span>
                             </div>
                             <div class="counter-num">
-                                <p data-purecounter-start="0" data-purecounter-end="550" data-purecounter-duration="1"
+                                <p data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1"
                                     class="counter purecounter"></p>
                                 <span class="counter-text">TOTAL CLIENTS</span>
                             </div>
@@ -326,7 +316,7 @@
                                 <span class="ico-circle"><i class="bi bi-award"></i></span>
                             </div>
                             <div class="counter-num">
-                                <p data-purecounter-start="0" data-purecounter-end="48" data-purecounter-duration="1"
+                                <p data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1"
                                     class="counter purecounter"></p>
                                 <span class="counter-text">AWARD WON</span>
                             </div>
@@ -833,20 +823,30 @@
     <script src="assets/js/main.js"></script>
 
     <script>
+        const startDate = new Date('2022-03-01'); // Start date
+        const endDate = new Date(); // Current date
+
+        const diffInMilliseconds = endDate - startDate;
+        const millisecondsInYear = 1000 * 60 * 60 * 24 * 365.25; // Approximate milliseconds in a year
+
+        const totalYearsExperience = diffInMilliseconds / millisecondsInYear;
+        const decimalPlaces = 1; // Number of decimal places to display
+
         const experienceCounter = document.querySelector('#experience-counter');
-        const startValue = Number(experienceCounter.dataset.start);
-        const endValue = Number(experienceCounter.dataset.end);
-        const decimalPlaces = Number(experienceCounter.dataset.decimal);
+        const endValue = totalYearsExperience.toFixed(decimalPlaces); // Rounded total years of experience
 
-        let currentValue = startValue;
-        let increment = (endValue - startValue) / 100; // adjust speed of transition by changing the value of 100
+        let currentValue = 0; // Start value is 0 for counting up
 
+        // Function to update the counter
         function updateCounter() {
-            currentValue += increment;
+            currentValue += 0.1; // Adjust speed of transition by changing the increment value
+
             if (currentValue > endValue) {
                 currentValue = endValue;
             }
+
             experienceCounter.textContent = currentValue.toFixed(decimalPlaces);
+
             if (currentValue !== endValue) {
                 requestAnimationFrame(updateCounter);
             }
