@@ -1460,3 +1460,7 @@ footer .credits {
 footer .credits a {
   color: #fff;
 }
+
+.counter.purecounter::after {
+  content: "+";
+}
