@@ -1466,9 +1466,9 @@ footer .credits a {
 }
 
 .zoom-image {
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.7s ease-in-out;
 }
 
 .zoom-image:hover {
-  transform: scale(1.1);
+  transform: scale(1.3);
 }
